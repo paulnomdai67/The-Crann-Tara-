@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Crann Tara -- A Call to Action</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0c14;
+    --navy: #0d1121;
+    --navy-mid: #111829;
+    --navy-light: #1a2540;
+    --green: #4ade5a;
+    --green-dim: #2a7a30;
+    --green-glow: rgba(74, 222, 90, 0.15);
+    --green-glow-strong: rgba(74, 222, 90, 0.3);
+    --white: #f0f4f8;
+    --grey: #8899bb;
+    --border: rgba(74, 222, 90, 0.2);
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–black);
+color: var(–white);
+font-family: ‘Rajdhani’, sans-serif;
+font-weight: 400;
+overflow-x: hidden;
+cursor: default;
+}
+
+/* ── GRID OVERLAY ── */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(rgba(74,222,90,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(74,222,90,0.03) 1px, transparent 1px);
+background-size: 60px 60px;
+pointer-events: none;
+z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 1.2rem 4rem;
+background: rgba(10,12,20,0.85);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+}
+
+.nav-logo {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+text-decoration: none;
+}
+
+.nav-cross {
+width: 28px;
+height: 28px;
+flex-shrink: 0;
+}
+
+.nav-brand {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.3rem;
+letter-spacing: 0.15em;
+color: var(–green);
+}
+
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+}
+
+.nav-links a {
+color: var(–grey);
+text-decoration: none;
+font-family: ‘Rajdhani’, sans-serif;
+font-weight: 600;
+font-size: 0.9rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(–green); }
+
+.nav-cta {
+background: transparent;
+border: 1px solid var(–green);
+color: var(–green) !important;
+padding: 0.5rem 1.5rem;
+font-family: ‘Bebas Neue’, sans-serif !important;
+font-size: 1rem !important;
+letter-spacing: 0.15em;
+transition: background 0.2s, box-shadow 0.2s !important;
+}
+
+.nav-cta:hover {
+background: var(–green-glow) !important;
+box-shadow: 0 0 20px var(–green-glow-strong);
+color: var(–green) !important;
+}
+
+/* ── HERO ── */
+#hero {
+position: relative;
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+padding: 6rem 2rem 4rem;
+}
+
+.hero-bg-cross {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: min(700px, 90vw);
+height: min(700px, 90vw);
+opacity: 0.04;
+pointer-events: none;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+text-align: center;
+max-width: 900px;
+}
+
+.hero-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.75rem;
+letter-spacing: 0.3em;
+color: var(–green);
+text-transform: uppercase;
+margin-bottom: 1.5rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.2s forwards;
+}
+
+.hero-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(4rem, 12vw, 9rem);
+line-height: 0.9;
+letter-spacing: 0.05em;
+color: var(–white);
+margin-bottom: 0.5rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.4s forwards;
+}
+
+.hero-title span {
+color: var(–green);
+display: block;
+}
+
+.hero-tagline {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(1.2rem, 3vw, 2rem);
+letter-spacing: 0.4em;
+color: var(–grey);
+margin-bottom: 2rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.6s forwards;
+}
+
+.hero-desc {
+font-size: 1.15rem;
+line-height: 1.7;
+color: var(–grey);
+max-width: 600px;
+margin: 0 auto 3rem;
+font-weight: 500;
+opacity: 0;
+animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.hero-desc strong { color: var(–white); }
+
+.hero-buttons {
+display: flex;
+gap: 1.5rem;
+justify-content: center;
+flex-wrap: wrap;
+opacity: 0;
+animation: fadeUp 0.8s 1s forwards;
+}
+
+.btn-primary {
+background: var(–green);
+color: var(–black);
+padding: 1rem 2.5rem;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.1rem;
+letter-spacing: 0.15em;
+text-decoration: none;
+border: none;
+cursor: pointer;
+transition: box-shadow 0.2s, transform 0.2s;
+clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.btn-primary:hover {
+box-shadow: 0 0 30px var(–green-glow-strong);
+transform: translateY(-2px);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(–green);
+padding: 1rem 2.5rem;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.1rem;
+letter-spacing: 0.15em;
+text-decoration: none;
+border: 1px solid var(–border);
+cursor: pointer;
+transition: border-color 0.2s, background 0.2s;
+clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.btn-secondary:hover {
+border-color: var(–green);
+background: var(–green-glow);
+}
+
+.hero-scroll {
+position: absolute;
+bottom: 2.5rem;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+opacity: 0;
+animation: fadeUp 0.8s 1.4s forwards;
+}
+
+.hero-scroll span {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+color: var(–grey);
+text-transform: uppercase;
+}
+
+.scroll-line {
+width: 1px;
+height: 40px;
+background: linear-gradient(to bottom, var(–green), transparent);
+animation: pulse-line 2s ease-in-out infinite;
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+position: relative;
+z-index: 2;
+background: var(–navy-mid);
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+padding: 2rem 4rem;
+display: flex;
+justify-content: center;
+gap: 0;
+}
+
+.stat-item {
+flex: 1;
+max-width: 220px;
+text-align: center;
+padding: 0 2rem;
+border-right: 1px solid var(–border);
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 2.8rem;
+color: var(–green);
+line-height: 1;
+margin-bottom: 0.3rem;
+}
+
+.stat-label {
+font-size: 0.8rem;
+letter-spacing: 0.15em;
+color: var(–grey);
+text-transform: uppercase;
+font-weight: 600;
+}
+
+/* ── SECTIONS ── */
+section {
+position: relative;
+z-index: 1;
+padding: 6rem 4rem;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.section-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.35em;
+color: var(–green);
+text-transform: uppercase;
+margin-bottom: 1rem;
+}
+
+.section-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(2.5rem, 5vw, 4rem);
+letter-spacing: 0.05em;
+line-height: 1;
+margin-bottom: 1.5rem;
+color: var(–white);
+}
+
+.section-title em {
+color: var(–green);
+font-style: normal;
+}
+
+.section-intro {
+font-size: 1.1rem;
+line-height: 1.7;
+color: var(–grey);
+max-width: 600px;
+margin-bottom: 4rem;
+font-weight: 500;
+}
+
+/* ── DIVIDER ── */
+.divider {
+width: 100%;
+height: 1px;
+background: linear-gradient(to right, transparent, var(–border), transparent);
+margin: 0;
+}
+
+/* ── WHAT WE BUILD ── */
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5px;
+background: var(–border);
+border: 1px solid var(–border);
+}
+
+.service-card {
+background: var(–navy);
+padding: 2.5rem;
+transition: background 0.3s;
+position: relative;
+overflow: hidden;
+}
+
+.service-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0;
+width: 3px;
+height: 0;
+background: var(–green);
+transition: height 0.3s;
+}
+
+.service-card:hover { background: var(–navy-light); }
+.service-card:hover::before { height: 100%; }
+
+.service-icon {
+width: 48px;
+height: 48px;
+margin-bottom: 1.5rem;
+color: var(–green);
+}
+
+.service-name {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.6rem;
+letter-spacing: 0.08em;
+color: var(–white);
+margin-bottom: 0.75rem;
+}
+
+.service-desc {
+font-size: 0.95rem;
+line-height: 1.6;
+color: var(–grey);
+font-weight: 500;
+}
+
+/* ── HOW IT WORKS ── */
+#how { background: var(–navy-mid); max-width: 100%; padding: 6rem 0; }
+
+#how .inner {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 4rem;
+}
+
+.process-steps {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 0;
+margin-top: 3rem;
+border: 1px solid var(–border);
+background: var(–border);
+}
+
+.process-step {
+background: var(–navy-mid);
+padding: 2.5rem 2rem;
+position: relative;
+}
+
+.step-num {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 5rem;
+color: rgba(74,222,90,0.08);
+line-height: 1;
+position: absolute;
+top: 1rem;
+right: 1.5rem;
+}
+
+.step-icon {
+width: 36px;
+height: 36px;
+color: var(–green);
+margin-bottom: 1rem;
+}
+
+.step-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.4rem;
+letter-spacing: 0.08em;
+color: var(–white);
+margin-bottom: 0.75rem;
+}
+
+.step-desc {
+font-size: 0.9rem;
+line-height: 1.6;
+color: var(–grey);
+font-weight: 500;
+}
+
+/* ── DEMO SECTION ── */
+#demo { background: var(–black); }
+
+.demo-wrapper {
+border: 1px solid var(–border);
+background: var(–navy);
+overflow: hidden;
+}
+
+.demo-header {
+background: var(–navy-mid);
+border-bottom: 1px solid var(–border);
+padding: 1rem 1.5rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.demo-dots {
+display: flex;
+gap: 0.5rem;
+}
+
+.demo-dot {
+width: 10px; height: 10px;
+border-radius: 50%;
+}
+
+.demo-dot:nth-child(1) { background: #ff5f57; }
+.demo-dot:nth-child(2) { background: #febc2e; }
+.demo-dot:nth-child(3) { background: var(–green); }
+
+.demo-url {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.75rem;
+color: var(–grey);
+letter-spacing: 0.05em;
+}
+
+.demo-body {
+padding: 2rem;
+}
+
+.demo-tabs {
+display: flex;
+gap: 0;
+border-bottom: 1px solid var(–border);
+margin-bottom: 2rem;
+}
+
+.demo-tab {
+padding: 0.75rem 1.5rem;
+font-family: ‘Rajdhani’, sans-serif;
+font-weight: 600;
+font-size: 0.85rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–grey);
+background: transparent;
+border: none;
+border-bottom: 2px solid transparent;
+cursor: pointer;
+transition: color 0.2s, border-color 0.2s;
+}
+
+.demo-tab.active {
+color: var(–green);
+border-bottom-color: var(–green);
+}
+
+.demo-panel { display: none; }
+.demo-panel.active { display: block; }
+
+/* Booking demo */
+.booking-demo {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+}
+
+.demo-form-group {
+margin-bottom: 1.2rem;
+}
+
+.demo-label {
+display: block;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+color: var(–green);
+text-transform: uppercase;
+margin-bottom: 0.4rem;
+}
+
+.demo-input {
+width: 100%;
+background: var(–navy-mid);
+border: 1px solid var(–border);
+color: var(–white);
+padding: 0.6rem 0.9rem;
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 0.95rem;
+font-weight: 500;
+outline: none;
+transition: border-color 0.2s;
+}
+
+.demo-input:focus { border-color: var(–green); }
+
+.demo-select {
+width: 100%;
+background: var(–navy-mid);
+border: 1px solid var(–border);
+color: var(–white);
+padding: 0.6rem 0.9rem;
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 0.95rem;
+font-weight: 500;
+outline: none;
+appearance: none;
+}
+
+.demo-submit {
+width: 100%;
+background: var(–green);
+color: var(–black);
+border: none;
+padding: 0.8rem;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1rem;
+letter-spacing: 0.15em;
+cursor: pointer;
+transition: box-shadow 0.2s;
+margin-top: 0.5rem;
+}
+
+.demo-submit:hover { box-shadow: 0 0 20px var(–green-glow-strong); }
+
+.demo-output {
+background: var(–black);
+border: 1px solid var(–border);
+padding: 1.5rem;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.8rem;
+color: var(–green);
+line-height: 1.8;
+min-height: 200px;
+}
+
+.demo-output-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+color: var(–grey);
+text-transform: uppercase;
+margin-bottom: 0.75rem;
+}
+
+.typing-cursor::after {
+content: ‘█’;
+animation: blink 1s step-end infinite;
+color: var(–green);
+}
+
+/* CRM Demo */
+.crm-demo { }
+
+.crm-table {
+width: 100%;
+border-collapse: collapse;
+font-size: 0.85rem;
+}
+
+.crm-table th {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–green);
+padding: 0.75rem 1rem;
+border-bottom: 1px solid var(–border);
+text-align: left;
+}
+
+.crm-table td {
+padding: 0.75rem 1rem;
+border-bottom: 1px solid rgba(74,222,90,0.07);
+color: var(–grey);
+font-weight: 500;
+}
+
+.crm-table tr:hover td { background: var(–green-glow); color: var(–white); }
+
+.status-badge {
+display: inline-block;
+padding: 0.2rem 0.6rem;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+}
+
+.status-live { background: rgba(74,222,90,0.15); color: var(–green); }
+.status-build { background: rgba(255,190,0,0.15); color: #ffbe00; }
+.status-scoped { background: rgba(100,130,200,0.15); color: #8899bb; }
+
+/* ── CONTACT ── */
+#contact { background: var(–navy-mid); max-width: 100%; padding: 6rem 0; }
+
+#contact .inner {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 4rem;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6rem;
+align-items: start;
+}
+
+.contact-headline {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(3rem, 6vw, 5.5rem);
+line-height: 0.9;
+letter-spacing: 0.03em;
+color: var(–white);
+margin-bottom: 1.5rem;
+}
+
+.contact-headline span { color: var(–green); display: block; }
+
+.contact-body {
+font-size: 1.05rem;
+line-height: 1.7;
+color: var(–grey);
+font-weight: 500;
+margin-bottom: 2rem;
+}
+
+.contact-points {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.75rem;
+}
+
+.contact-points li {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+font-size: 0.95rem;
+font-weight: 600;
+color: var(–grey);
+}
+
+.contact-points li::before {
+content: ‘▸’;
+color: var(–green);
+font-size: 0.8rem;
+}
+
+.contact-form {
+display: flex;
+flex-direction: column;
+gap: 1.2rem;
+}
+
+.form-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+
+.form-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.25em;
+color: var(–green);
+text-transform: uppercase;
+}
+
+.form-input, .form-textarea, .form-select {
+background: var(–navy);
+border: 1px solid var(–border);
+color: var(–white);
+padding: 0.75rem 1rem;
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 1rem;
+font-weight: 500;
+outline: none;
+transition: border-color 0.2s, box-shadow 0.2s;
+width: 100%;
+appearance: none;
+}
+
+.form-input:focus, .form-textarea:focus {
+border-color: var(–green);
+box-shadow: 0 0 0 3px var(–green-glow);
+}
+
+.form-textarea { resize: vertical; min-height: 130px; }
+
+.form-submit {
+background: var(–green);
+color: var(–black);
+border: none;
+padding: 1rem 2rem;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.1rem;
+letter-spacing: 0.2em;
+cursor: pointer;
+transition: box-shadow 0.2s, transform 0.2s;
+clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+align-self: flex-start;
+padding: 1rem 3rem;
+}
+
+.form-submit:hover {
+box-shadow: 0 0 30px var(–green-glow-strong);
+transform: translateY(-2px);
+}
+
+/* ── FOOTER ── */
+footer {
+background: var(–black);
+border-top: 1px solid var(–border);
+padding: 2rem 4rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: relative;
+z-index: 2;
+}
+
+.footer-brand {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1rem;
+letter-spacing: 0.2em;
+color: var(–green);
+}
+
+.footer-tag {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+color: var(–grey);
+text-transform: uppercase;
+}
+
+.footer-copy {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 0.65rem;
+color: var(–grey);
+letter-spacing: 0.1em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+
+@keyframes pulse-line {
+0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+50% { opacity: 1; transform: scaleY(1); }
+}
+
+.fade-in {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+nav { padding: 1rem 1.5rem; }
+.nav-links { display: none; }
+section { padding: 4rem 1.5rem; }
+.stats-bar { padding: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+.stat-item { border-right: none; padding: 0.5rem; }
+.booking-demo { grid-template-columns: 1fr; }
+#contact .inner { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem; }
+#how .inner { padding: 0 1.5rem; }
+footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+.form-row { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-cross" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="40" r="24" stroke="#4ade5a" stroke-width="6" fill="none"/>
+      <rect x="44" y="4" width="12" height="122" fill="#4ade5a"/>
+      <rect x="10" y="28" width="80" height="12" fill="#4ade5a"/>
+    </svg>
+    <span class="nav-brand">THE CRANN TARA</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">What We Build</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#demo">Live Demo</a></li>
+    <li><a href="#contact" class="nav-cta">Start a Project</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section id="hero">
+  <svg class="hero-bg-cross" viewBox="0 0 500 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="250" cy="200" r="140" stroke="#4ade5a" stroke-width="12" fill="none"/>
+    <rect x="224" y="0" width="52" height="620" fill="#4ade5a"/>
+    <rect x="0" y="170" width="500" height="52" fill="#4ade5a"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-label">// thecranntara.scot -- est. 2025</p>
+    <h1 class="hero-title">
+      WE BUILD
+      <span>AI APPS</span>
+      THAT WORK
+    </h1>
+    <p class="hero-tagline">-- A CALL TO ACTION --</p>
+    <p class="hero-desc">
+      From <strong>intelligent automation</strong> to <strong>custom business tools</strong> -- we design and build production-ready apps that generate revenue, reduce manual work, and scale without headcount.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Start Your Project</a>
+      <a href="#demo" class="btn-secondary">See It In Action</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">48H</div>
+    <div class="stat-label">First Prototype</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Custom Built</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">0</div>
+    <div class="stat-label">Off-The-Shelf Templates</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Scalability</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+
+<section id="services">
+  <p class="section-label fade-in">// 01 -- What We Build</p>
+  <h2 class="section-title fade-in">TOOLS THAT <em>GET THE JOB DONE</em></h2>
+  <p class="section-intro fade-in">We don't sell software packages. We build the exact tool your business needs -- then hand you the keys.</p>
+
+  <div class="services-grid fade-in">
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1 1 .03 2.603-1.35 2.603H4.15c-1.38 0-2.35-1.603-1.35-2.603L4.2 15.3"/>
+      </svg>
+      <div class="service-name">AI Sales Agents</div>
+      <p class="service-desc">Automated outreach, lead qualification, and appointment booking -- running 24/7 without you lifting a finger. Your sales team that never sleeps.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/>
+      </svg>
+      <div class="service-name">Project Management Apps</div>
+      <p class="service-desc">Custom tracking tools built for your exact workflow. Like Plot Tracker -- live site coordination built for a windows & doors company. Yours, built for you.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+      </svg>
+      <div class="service-name">Business Intelligence Dashboards</div>
+      <p class="service-desc">Real-time visibility over your operations. Portfolio trackers, cost models, KPI dashboards -- built on your data, not someone else's template.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3"/>
+      </svg>
+      <div class="service-name">Web Applications</div>
+      <p class="service-desc">Full-stack web apps built on modern infrastructure -- React, Supabase, Netlify. Fast, secure, scalable. Designed to generate revenue from day one.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+      </svg>
+      <div class="service-name">Automation & Integration</div>
+      <p class="service-desc">Connect your tools, eliminate manual data entry, automate your workflows. We map your process and build the system that runs it.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+      </svg>
+      <div class="service-name">Secure Data Tools</div>
+      <p class="service-desc">Private, row-level-secured applications for sensitive business data. Investment trackers, care planning tools, HR systems -- built with security first.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+  <div class="inner">
+    <p class="section-label fade-in">// 02 -- How It Works</p>
+    <h2 class="section-title fade-in">BRIEF. BUILD. <em>LAUNCH.</em></h2>
+    <p class="section-intro fade-in">No lengthy discovery phases. No committees. We move fast, build smart, and deliver something that works.</p>
+
+```
+<div class="process-steps fade-in">
+  <div class="process-step">
+    <div class="step-num">01</div>
+    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+    </svg>
+    <div class="step-title">Tell Us What You Need</div>
+    <p class="step-desc">A brief conversation -- written or async -- to understand your problem, your users, and what success looks like.</p>
+  </div>
+  <div class="process-step">
+    <div class="step-num">02</div>
+    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/>
+    </svg>
+    <div class="step-title">We Scope & Design</div>
+    <p class="step-desc">You get a clear scoping document -- what will be built, in what order, at what cost. No surprises.</p>
+  </div>
+  <div class="process-step">
+    <div class="step-num">03</div>
+    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
+    </svg>
+    <div class="step-title">We Build Fast</div>
+    <p class="step-desc">Working prototype within 48 hours. Iterative builds with you in the loop. No disappearing for months.</p>
+  </div>
+  <div class="process-step">
+    <div class="step-num">04</div>
+    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+    </svg>
+    <div class="step-title">You Launch & Own It</div>
+    <p class="step-desc">Your app. Your infrastructure. Your data. We hand over everything and support the launch. You're not dependent on us to run it.</p>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEMO -->
+
+<section id="demo">
+  <p class="section-label fade-in">// 03 -- Live Demo</p>
+  <h2 class="section-title fade-in">SEE WHAT <em>WE MEAN</em></h2>
+  <p class="section-intro fade-in">These are live interactive examples of the kind of tools we build -- not mockups, not screenshots.</p>
+
+  <div class="demo-wrapper fade-in">
+    <div class="demo-header">
+      <div class="demo-dots">
+        <div class="demo-dot"></div>
+        <div class="demo-dot"></div>
+        <div class="demo-dot"></div>
+      </div>
+      <div class="demo-url">app.thecranntara.scot -- live demo environment</div>
+    </div>
+    <div class="demo-body">
+      <div class="demo-tabs">
+        <button class="demo-tab active" onclick="switchTab('booking')">AI Lead Qualifier</button>
+        <button class="demo-tab" onclick="switchTab('crm')">Project Tracker</button>
+      </div>
+
+```
+  <!-- BOOKING / AI DEMO -->
+  <div class="demo-panel active" id="tab-booking">
+    <div class="booking-demo">
+      <div>
+        <p style="font-size:0.85rem;color:var(--grey);margin-bottom:1.5rem;font-weight:500;">Enter a business description and a lead type -- the AI will qualify the lead and generate an outreach message instantly.</p>
+        <div class="demo-form-group">
+          <label class="demo-label">Your Business</label>
+          <input class="demo-input" id="biz-type" placeholder="e.g. Solar panel installer" />
+        </div>
+        <div class="demo-form-group">
+          <label class="demo-label">Lead Type</label>
+          <select class="demo-select" id="lead-type">
+            <option>Dormant customer (12+ months)</option>
+            <option>New enquiry from website</option>
+            <option>Trade referral</option>
+            <option>Cold prospect</option>
+          </select>
+        </div>
+        <div class="demo-form-group">
+          <label class="demo-label">Lead Name</label>
+          <input class="demo-input" id="lead-name" placeholder="e.g. James McKenzie" />
+        </div>
+        <button class="demo-submit" onclick="runAIDemo()">▸ QUALIFY & GENERATE MESSAGE</button>
+      </div>
+      <div>
+        <div class="demo-output-label">// AI Output</div>
+        <div class="demo-output" id="ai-output">
+          <span style="color:var(--grey)">Waiting for input...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRM DEMO -->
+  <div class="demo-panel" id="tab-crm">
+    <div class="crm-demo">
+      <p style="font-size:0.85rem;color:var(--grey);margin-bottom:1.5rem;font-weight:500;">Example project tracker -- the kind of tool we build for operations teams. Live status, instant visibility.</p>
+      <table class="crm-table">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Client</th>
+            <th>Stage</th>
+            <th>Last Update</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plot 14 -- Larbert</td>
+            <td>Barratt Homes</td>
+            <td>Full Install</td>
+            <td>Today, 09:14</td>
+            <td><span class="status-badge status-live">LIVE</span></td>
+          </tr>
+          <tr>
+            <td>Plot 7 -- Ayr North</td>
+            <td>Taylor Wimpey</td>
+            <td>Snagging</td>
+            <td>Yesterday</td>
+            <td><span class="status-badge status-build">IN PROGRESS</span></td>
+          </tr>
+          <tr>
+            <td>Plot 22 -- Irvine</td>
+            <td>Scotia Windows</td>
+            <td>Delivered</td>
+            <td>2 days ago</td>
+            <td><span class="status-badge status-scoped">PENDING</span></td>
+          </tr>
+          <tr>
+            <td>Plot 3 -- Kilmarnock</td>
+            <td>Persimmon</td>
+            <td>Part Install</td>
+            <td>Today, 11:32</td>
+            <td><span class="status-badge status-live">LIVE</span></td>
+          </tr>
+          <tr>
+            <td>Plot 9 -- Troon</td>
+            <td>Cala Homes</td>
+            <td>Manufactured</td>
+            <td>3 days ago</td>
+            <td><span class="status-badge status-scoped">PENDING</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+
+<section id="contact">
+  <div class="inner">
+    <div>
+      <p class="section-label fade-in">// 04 -- Start a Project</p>
+      <h2 class="contact-headline fade-in">
+        READY TO
+        <span>TAKE ACTION?</span>
+      </h2>
+      <p class="contact-body fade-in">Tell us what you need. We'll come back with a clear scope, timeline, and cost -- usually within 24 hours.</p>
+      <ul class="contact-points fade-in">
+        <li>No sales calls required</li>
+        <li>Written brief → scoping doc → build</li>
+        <li>Fixed project pricing available</li>
+        <li>You own everything we build</li>
+        <li>Scottish business, building for the world</li>
+      </ul>
+    </div>
+    <form class="contact-form fade-in" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="First Last" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Business Name</label>
+          <input class="form-input" type="text" placeholder="Your Company" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="you@yourbusiness.com" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">What do you need built?</label>
+        <select class="form-input form-select">
+          <option>AI Sales Agent / Automation</option>
+          <option>Custom Web Application</option>
+          <option>Project Management Tool</option>
+          <option>Business Dashboard</option>
+          <option>Something else -- I'll describe below</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Brief Description</label>
+        <textarea class="form-textarea" placeholder="Tell us about your business and what you're trying to achieve. The more context, the better." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">SEND THE BRIEF ▸</button>
+      <div id="form-success" style="display:none;font-family:'Share Tech Mono',monospace;font-size:0.8rem;color:var(--green);letter-spacing:0.1em;">
+        ✓ Brief received. We'll be in touch within 24 hours.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div>
+    <div class="footer-brand">THE CRANN TARA</div>
+    <div class="footer-tag">A Call to Action</div>
+  </div>
+  <div class="footer-copy">© 2025 The Crann Tara · thecranntara.scot · North Ayrshire, Scotland</div>
+</footer>
+
+<script>
+  // ── SCROLL ANIMATIONS ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Stagger children
+        const cards = e.target.querySelectorAll('.service-card, .process-step');
+        cards.forEach((c, i) => {
+          c.style.transitionDelay = `${i * 0.08}s`;
+          c.style.opacity = '0';
+          c.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            c.style.opacity = '1';
+            c.style.transform = 'translateY(0)';
+          }, 100 + i * 80);
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── TABS ──
+  function switchTab(tab) {
+    document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ── AI DEMO ──
+  async function runAIDemo() {
+    const biz = document.getElementById('biz-type').value || 'Solar panel installer';
+    const lead = document.getElementById('lead-type').value;
+    const name = document.getElementById('lead-name').value || 'the lead';
+    const output = document.getElementById('ai-output');
+
+    output.innerHTML = '<span class="typing-cursor" style="color:var(--green)">Analysing lead</span>';
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          messages: [{
+            role: 'user',
+            content: `You are an AI sales agent for a ${biz} business. 
+Lead type: ${lead}. Lead name: ${name}.
+
+Respond in this EXACT format with no extra text:
+
+QUALIFICATION SCORE: [High/Medium/Low]
+INTENT SIGNAL: [one sentence]
+RECOMMENDED ACTION: [one sentence]
+
+OUTREACH MESSAGE:
+[A short, punchy, personalised SMS/email outreach message -- 3-4 sentences max. Direct, professional, value-first. No fluff.]`
+          }]
+        })
+      });
+
+      const data = await response.json();
+      const text = data.content?.[0]?.text || 'Unable to generate response.';
+
+      output.innerHTML = '';
+      let i = 0;
+      const speed = 18;
+      function type() {
+        if (i < text.length) {
+          output.innerHTML = text.substring(0, i + 1).replace(/\n/g, '<br>');
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+
+    } catch (err) {
+      output.innerHTML = '<span style="color:#ff5f57">// API connection required for live demo</span><br><br>' +
+        '<span style="color:var(--grey)">QUALIFICATION SCORE: High<br>' +
+        'INTENT SIGNAL: Dormant customer showing seasonal purchase signals.<br>' +
+        'RECOMMENDED ACTION: Re-engage with a value-first follow-up this week.<br><br>' +
+        'OUTREACH MESSAGE:<br>' +
+        `Hi ${name}, it\'s been a while since we last spoke -- we\'ve been busy this year with some great installations across the area. ` +
+        `With the season changing, now\'s a great time to revisit your project. ` +
+        `I can get you a refreshed quote within 24 hours. Worth a quick chat?</span>`;
+    }
+  }
+
+  // ── FORM ──
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.querySelectorAll('input, textarea, select, button').forEach(el => el.disabled = true);
+  }
+</script>
+
+</body>
+</html>
