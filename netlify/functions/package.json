@@ -1,0 +1,8 @@
+{
+  "name": "crann-tara-functions",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-fetch": "^2.6.9",
+    "@supabase/supabase-js": "^2.0.0"
+  }
+}
