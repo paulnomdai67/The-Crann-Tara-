@@ -57,7 +57,8 @@ Respond ONLY with valid JSON in this exact format:
 
     const claudeData = await claudeRes.json();
     const reportText = claudeData.content?.[0]?.text || '{}';
-    const report = JSON.parse(reportText);
+    const clean = reportText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    const report = JSON.parse(clean);
 
     // Get week starting date (last Monday)
     const now = new Date();
